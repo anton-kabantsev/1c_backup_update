@@ -1,4 +1,4 @@
-import random, subprocess, sys, time, datetime, os.path, zipfile
+import subprocess, sys, datetime, os.path, zipfile
 
 def logging(log_message):
     log_name = sys.path[1]+'\\'+str(datetime.date.today())+'.txt'
