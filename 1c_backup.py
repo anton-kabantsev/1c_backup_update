@@ -38,13 +38,48 @@ def get_name(bakpath):
     # получим имя бэкапа - имя папки + дата
     # имя папки:
     lst = bakpath.split('\\')
-    return (lst[len(lst)-1]+'_'+str(datetime.date.today())+'.zip')
+    return (lst[len(lst)-1]+'_'+datetime.datetime.now().strftime("%d_%m_%Y_%H_%M_%S")+'.zip')
 
 def create_backup(backup_settings):
     for bakpath in backup_settings['backup_list']:
         with zipfile.ZipFile(backup_settings['backup_dst']+'\\'+get_name(bakpath),'w') as backup:
             backup.write(bakpath+'\\1cv8.1cd')
             log.logging('Бэкап '+get_name(bakpath)+' создан')
+
+def remove_old_files(Number_to_keep,bak_name,backup_dst):
+    bak_lst=[]
+    for files in os.walk(backup_dst, topdown=True,onerror=None,followlinks=True):
+        for name in files[2]:
+            if name.find(bak_name)!=-1:
+                bak_lst.append(backup_dst+'\\'+name)
+                print(backup_dst+'\\'+name)
+        break
+    if len(bak_lst)==0:
+        return 1
+    elif len(bak_lst)<=Number_to_keep: # нечего удалять
+        return 0
+    while Number_to_keep<len(bak_lst):
+        bak_to_del =''
+        bak_date =''
+        first_iter = True
+        for bak in bak_lst:
+            if first_iter:
+                bak_date = os.path.getctime(bak)
+                bak_to_del = bak
+                first_iter = False
+                continue
+            if bak_date > os.path.getctime(bak):
+                bak_date = os.path.getctime(bak)
+                bak_to_del = bak
+        bak_lst.remove(bak_to_del)
+        os.remove(bak_to_del)
+
+def clean_backup_dst(backup_settings):
+    Number_to_keep = 3
+    for bakpath in backup_settings['backup_list']:
+        bak_name = bakpath.split('\\')[len(bakpath.split('\\'))-1]
+        remove_old_files(Number_to_keep, bak_name, backup_settings['backup_dst'])
+
 
 def main():
     # Прочитать файл настроек. Назначение - хранение путей к базам для бэкапа
@@ -58,5 +93,8 @@ def main():
     process_close.kill_proc('1c')
     log.logging('Создаем бэкапы')
     create_backup(backup_settings)
+    log.logging('Бэкап завершен')
+    clean_backup_dst(backup_settings)
+    log.logging('Очистка хранилища завершена')
     log.logging('Процесс завершен')
 main()
