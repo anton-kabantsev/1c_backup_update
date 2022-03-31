@@ -74,8 +74,7 @@ def remove_old_files(Number_to_keep,bak_name,backup_dst):
         bak_lst.remove(bak_to_del)
         os.remove(bak_to_del)
 
-def clean_backup_dst(backup_settings):
-    Number_to_keep = 3
+def clean_backup_dst(backup_settings,Number_to_keep):
     for bakpath in backup_settings['backup_list']:
         bak_name = bakpath.split('\\')[len(bakpath.split('\\'))-1]
         remove_old_files(Number_to_keep, bak_name, backup_settings['backup_dst'])
@@ -94,7 +93,7 @@ def main():
     log.logging('Создаем бэкапы')
     create_backup(backup_settings)
     log.logging('Бэкап завершен')
-    clean_backup_dst(backup_settings)
+    clean_backup_dst(backup_settings,8)
     log.logging('Очистка хранилища завершена')
     log.logging('Процесс завершен')
 main()
