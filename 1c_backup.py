@@ -93,7 +93,7 @@ def main():
     log.logging('Создаем бэкапы')
     create_backup(backup_settings)
     log.logging('Бэкап завершен')
-    clean_backup_dst(backup_settings,8)
+    clean_backup_dst(backup_settings,8) # Enter number of backup to keep for every base
     log.logging('Очистка хранилища завершена')
     log.logging('Процесс завершен')
 main()
