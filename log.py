@@ -1,4 +1,4 @@
-import sys
+import sys, datetime, os
 def logging(log_message):
     log_name = sys.path[0]+'\\'+str(datetime.date.today())+'.txt'
     if os.path.exists(log_name):
