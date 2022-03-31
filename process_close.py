@@ -53,7 +53,7 @@ def get_process(proc_name=''):
     while ind != len(output):
         if len(spaces_deletion(output[ind]))>0:
             pars_res = (tasklist_parse(output[ind]))
-            print(pars_res)
+            #print(pars_res)
             pid_list.append(pars_res['pid'])
         ind = ind + 1
     return pid_list
