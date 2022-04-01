@@ -1,4 +1,6 @@
-import sys, datetime, os.path, zipfile, log, process_close
+import sys, datetime, os.path, zipfile
+from backup import log
+from backup import process_close
 
 def default_backup_ini_creation(backup_ini_path):
     backup_ini = open(backup_ini_path, "w")

@@ -1,4 +1,6 @@
-import log, subprocess
+import subprocess
+from backup import log
+
 def spaces_deletion(str):
     string = ''
     ind = 0
