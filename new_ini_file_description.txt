@@ -1,0 +1,23 @@
+<bak_schedule>
+    <Week>
+        <Weekday Name = 'Monday'>
+            <hour>13.30</hour>
+        <Weekday Name = 'Tuesday'>
+            <hour>13.30</hour>
+        <Weekday Name = 'Wensday'>
+            <hour>13.30</hour>
+        <Weekday Name = 'Thursday'>
+            <hour>13.30</hour>
+        <Weekday Name = 'Friday'>
+            <hour>13.30</hour>
+        <Weekday Name = 'Saturday'>
+            <hour>13.30</hour>
+        <Weekday Name = 'Sunday'>
+    </Week>
+</bak_schedule>
+use bak_schedule as check = True
+use bak_schedule as update = True
+
+base = ''
+base_path = ''
+base_number_to_keep = ''
