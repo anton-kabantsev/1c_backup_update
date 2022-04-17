@@ -81,7 +81,6 @@ def clean_backup_dst(backup_settings,Number_to_keep):
         bak_name = bakpath.split('\\')[len(bakpath.split('\\'))-1]
         remove_old_files(Number_to_keep, bak_name, backup_settings['backup_dst'])
 
-
 def main():
     # Прочитать файл настроек. Назначение - хранение путей к базам для бэкапа
     log.logging('Начинаем бэкап 1с баз')
