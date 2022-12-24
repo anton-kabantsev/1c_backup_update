@@ -100,7 +100,7 @@ def clean_backup_dst(backup_settings,Number_to_keep):
 def main():
     # Настройки
     sys_path = 'D:\\temp\\24_12_2022'  # папка хранения ini файлов скрипта
-    backup_folder = 'D:\\1c\\base'  # какаую папку анализировать на базы и бэкапить
+    backup_folder = 'D:\\1c\\base'  # какую папку анализировать на базы и бэкапить
     backup_dst = 'D:\\1c_backup'  # куда кидать бэкапы
     number_to_keep = 3 # Enter number of backup to keep for every base
     # Прочитать файл настроек. Назначение - хранение путей к базам для бэкапа
